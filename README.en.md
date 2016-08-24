@@ -20,7 +20,7 @@
 
 - [favLinks](http://favlink.me)
 
-欢迎通过上述方式与我联系
+Welcome to cantact me.
 
 ## Usage
 1. INSTALL
