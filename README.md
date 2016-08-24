@@ -1,5 +1,7 @@
 # islandBeauty | 岛国丽人
 
+[Readme in English](https://github.com/zhangjh/islandBeauty/blob/master/README.en.md)
+
 ## 概述
 * 岛国丽人是一个Node.js爬虫项目，顾名思义，可以用来获取**不可描述**电影的种子文件。
 * 当然，我的本意只是用Node做一个爬虫，**Adult torrent**只是一个比较火爆的题材。
@@ -8,9 +10,11 @@
 * AV种子下载只是一个题材，我的真实用途是下载电影种子，岛国丽人项目亦可支持下载**海盗湾中文网**的电影种子。
 
 ## 社交
-[微博](http://login.sina.com.cn/sso/login.php?url=http%3A%2F%2Fweibo.com%2Fjhspider&_rand=1472023636.7234&gateway=1&service=miniblog&entry=miniblog&useticket=1&returntype=META&_client_version=0.6.23)
-[我的博客](http://5941740.cn)
-[藏经阁](http://favlink.me)
+- [微博](http://login.sina.com.cn/sso/login.php?url=http%3A%2F%2Fweibo.com%2Fjhspider&_rand=1472023636.7234&gateway=1&service=miniblog&entry=miniblog&useticket=1&returntype=META&_client_version=0.6.23)
+
+- [我的博客](http://5941740.cn)
+
+- [藏经阁](http://favlink.me)
 
 欢迎通过上述方式与我联系
 
