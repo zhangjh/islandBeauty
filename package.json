@@ -1,0 +1,18 @@
+{
+  "name": "island-beauty",
+  "version": "1.0.0",
+  "description": "岛国丽人--种子下载器",
+  "main": "main.js",
+  "bin": {
+    "island-beauty": "main.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "njhxzhangjihong@126.com,Zhangjh",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "request": "^2.74.0"
+  }
+}

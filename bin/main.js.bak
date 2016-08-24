@@ -1,0 +1,106 @@
+var fs = require('fs');
+var request = require('request');
+var cheerio = require('cheerio');
+var config = require("../conf/config.js");
+
+var downloadSrc = config["downloadSrc"];
+var downloadDir = config["downloadDir"];
+
+var Searcher = function(src,dst){
+	this.src = src;
+	this.dst = dst;
+};
+
+
+//传入源站点url
+Searcher.prototype.dispatch = function(){
+	var that = this;
+	for(var i in this.src){
+		var url = this.src[i];
+		if(/torrentbit/.test(url)){
+			//相应的url的parse方法
+			this.visitTorrentPage(url).then(function(linksArr){
+				return new Promise(function(resolve,reject){
+					var torrentPageUrls = [];
+					for(var i = 0,len = linksArr.length;i < len;i++){
+						torrentPageUrls.push(linksArr[i].href);
+					}
+					//console.log(torrentPageUrls);
+					resolve(torrentPageUrls);
+				});
+			}).then(function(torrentPageUrls){
+				//console.log(torrentPageUrls);
+				that.parseTorrentPage(torrentPageUrls);
+			});
+		}
+	}
+};
+
+//访问网站获取种子链接
+Searcher.prototype.visitTorrentPage = function(url){
+	return new Promise(function(resolve,reject){
+		request(url,function(err,r,b){
+			if(!err && r.statusCode === 200){
+				var $ = cheerio.load(b);
+				var trs = $(".tor_list tbody .torrent-info");
+				var links = [];
+				trs.each(function(index,ele){
+					var href = $("a",ele).attr("href");
+					var title = $("a",ele).text();
+					links.push({
+						"href": href,
+						"title": title
+					});
+				});
+				resolve(links);
+			}else {
+				console.error("Error: " + err);
+				reject();
+			}
+		});
+	});
+};
+
+//分析种子页拿到下载地址
+Searcher.prototype.parseTorrentPage = function(urls){
+	var p = [];
+	var domain = "http://www.torrentbit.net";
+	for(var i in urls){
+		(function(id){
+			var promise = new Promise(function(resolve,reject){
+				var url = urls[id];
+				request(domain + url,function(err,r,b){
+					if(!err && r.statusCode === 200){
+						var $ = cheerio.load(b);
+						console.log($("a.btn-primary").attr("href"));
+						this.download($("a.btn-primary").attr("href"),downloadDir);
+						resolve(true);
+					}				
+				});
+			});
+			p.push(promise);
+		})(i);
+	}
+	Promise.all(p).then(function(status){
+		console.log("Download succ: " + status.length + "个.");
+	});
+};
+
+
+//下载种子并保存
+Searcher.prototype.dowload = function(url,dst){
+	if(!this.checkUniq()){
+		request(url,function(err,r,b){
+			
+		});
+	}
+};
+
+//校验唯一性
+Searcher.prototype.checkUniq = function(){
+	return false;
+};
+
+var searcher = new Searcher(downloadSrc,downloadDir);
+
+searcher.dispatch();
