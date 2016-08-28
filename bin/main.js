@@ -45,12 +45,20 @@ if(!args.length){
 	}
 
 	var movieUrlPre = config["downloadSrc"][1];
-	var url = movieUrlPre + "/cse/search?s=11504240492176070054&q=" + encodeURIComponent(args[1]);
+	var searchMovieName = args[1];
+	var url = movieUrlPre + "/cse/search?s=11504240492176070054&q=" + encodeURIComponent(searchMovieName);
 	var dst = config["downloadDir"][1];
 	var parser2 = new Parser2(url);
 
-	parser2.getTorrentPageLinks().then(function(link){
-		console.log(link);
+	parser2.getTorrentPageLinks().then(function(linkObj){
+		var link = linkObj.href;
+		var resultName = linkObj.name;
+		console.info(link);
+		console.info(resultName);
+		if(!new RegExp(searchMovieName).test(linkObj.name)){
+			console.error("结果不匹配，停止下载！");
+			return false;
+		}
 		if(link){
 			parser2.getTorrentDownloadLinks(link).then(function(downloadLinks){
 				if(downloadLinks.length){
