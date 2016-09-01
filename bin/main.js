@@ -6,6 +6,7 @@
 
 var fs = require('fs');
 var request = require('request');
+var exec = require('child_process').exec;
 var cheerio = require('cheerio');
 var config = require('../conf/config');
 
@@ -18,12 +19,34 @@ var args = process.argv.slice(2);
 
 var pattern = new RegExp("[\|\&\\s#\-\.\*\(\)\!\/]","g");
 
+//自动创建目的下载目录
+function mkdir(dst){
+	if(dst){
+		var cmd = "sh -x mkdir.sh " + dst;
+		var out = exec(cmd);
+		out.on("exit",function(code){
+			if(code == 0){
+				console.log("mkdir " + dst + " sucess.");
+			}
+		});
+		return 0;
+	}else {
+		console.error("dst目录为空！");
+		return 1;
+	}
+}
+
 if(!args.length){
 	//下载AV种子
 	var url = config["downloadSrc"][0];
 	var dst = config["downloadDir"][0];
 	var parser1 = new Parser1(url);
 	
+	//创建目的目录
+	if(mkdir(dst)){
+		return;
+	}
+
 	parser1.getTorrentPageLinks().then(function(links){
 		for(var i=0,len=links.length;i<len;i++){
 			(function(i){
@@ -49,6 +72,10 @@ if(!args.length){
 	var url = movieUrlPre + "/cse/search?s=11504240492176070054&q=" + encodeURIComponent(searchMovieName);
 	var dst = config["downloadDir"][1];
 	var parser2 = new Parser2(url);
+
+	if(mkdir(dst)){
+		return;
+	}
 
 	parser2.getTorrentPageLinks().then(function(linkObj){
 		var link = linkObj.href;
