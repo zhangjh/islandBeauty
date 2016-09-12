@@ -1,2 +1,4 @@
 node_modules
 dst
+*.xml
+*.iml

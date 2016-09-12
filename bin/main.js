@@ -57,16 +57,13 @@ function search2down(entity,searchMovieName,pattern){
 							}
 							resolve("下载完成，请查看下载目录。");
 						}else {
-							console.error("没有下载链接！");
 							reject("没有下载链接！");
 						}
 					});	
 				}else {
-					console.error("没有搜索结果！");
 					reject("没有搜索结果！");
 				}
 			}else {
-				console.error("搜索结果不符！");
 				reject("搜索结果不匹配！");
 			}
 		});
@@ -84,6 +81,7 @@ if(!args.length){
 		return;
 	}
 
+	console.log("下载中，请稍等...");
 	parser1.getTorrentPageLinks().then(function(links){
 		for(var i=0,len=links.length;i<len;i++){
 			(function(i){
@@ -106,6 +104,7 @@ if(!args.length){
 
 	var urlPreOfParser2 = config["downloadSrc"][1];
 	var urlPreOfParser3 = config["downloadSrc"][2];
+	//此处增加网页解析类...
 	var searchMovieName = args[1];
 	var dst = config["downloadDir"][1];
 	var parser2 = new Parser2(urlPreOfParser2,searchMovieName);
@@ -115,6 +114,7 @@ if(!args.length){
 		return;
 	}
 
+	console.log("下载中，请稍等...");
 	search2down(parser2,searchMovieName,pattern).then(function(ret){
 		console.log(ret);
 	}).catch(function(e){
