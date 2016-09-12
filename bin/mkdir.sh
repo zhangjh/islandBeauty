@@ -2,14 +2,14 @@
 dst=$1
 
 if [ "${dst}" == "" ];then
-	exit -1
+  exit -1
 fi
 
 if [ ! -e ${dst} ];then
-	mkdir -p ${dst}
-	ret=$?
+  mkdir -p ${dst}
+  ret=$?
 else 
-	ret=1
+  ret=1
 fi
 
 exit ${ret}
