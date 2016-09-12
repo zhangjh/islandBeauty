@@ -13,7 +13,8 @@ var config = require('../conf/config');
 
 //加载网页解析库
 var Parser1 = require("../lib/parser1");
-var Parser2 = require("../lib/parser2"); 
+var Parser2 = require("../lib/parser2");
+var Parser3 = require("../lib/parser3"); 
 
 var args = process.argv.slice(2);
 
@@ -34,6 +35,42 @@ function mkdir(dst){
 		console.error("dst目录为空！");
 		return 1;
 	}
+}
+
+function search2down(entity,searchMovieName,pattern){
+	return new Promise(function(resolve,reject){
+		entity.getMatchResultInfo().then(function(linkObj){
+			var link = linkObj.href;
+			var resultName = linkObj.name;
+			console.log(link);
+			console.log(resultName);
+			if(new RegExp(searchMovieName).test(resultName)){
+				if(link){
+					entity.getLink(link).then(function(downloadLinks){
+						if(downloadLinks.length){
+							for(var i=0,len=downloadLinks.length;i<len;i++){
+								(function(i){
+									var downloadLink = downloadLinks[i].href;
+									var name = downloadLinks[i].title.replace(pattern,'');
+									entity.download(downloadLink,dst,name);
+								})(i);
+							}
+							resolve("下载完成，请查看下载目录。");
+						}else {
+							console.error("没有下载链接！");
+							reject("没有下载链接！");
+						}
+					});	
+				}else {
+					console.error("没有搜索结果！");
+					reject("没有搜索结果！");
+				}
+			}else {
+				console.error("搜索结果不符！");
+				reject("搜索结果不匹配！");
+			}
+		});
+	});
 }
 
 if(!args.length){
@@ -67,46 +104,21 @@ if(!args.length){
 		return false;
 	}
 
-	var movieUrlPre = config["downloadSrc"][1];
+	var urlPreOfParser2 = config["downloadSrc"][1];
+	var urlPreOfParser3 = config["downloadSrc"][2];
 	var searchMovieName = args[1];
-	var url = movieUrlPre + "/cse/search?s=11504240492176070054&q=" + encodeURIComponent(searchMovieName);
 	var dst = config["downloadDir"][1];
-	var parser2 = new Parser2(url);
+	var parser2 = new Parser2(urlPreOfParser2,searchMovieName);
+	var parser3 = new Parser3(urlPreOfParser3,searchMovieName);
 
 	if(mkdir(dst)){
 		return;
 	}
 
-	parser2.getTorrentPageLinks().then(function(linkObj){
-		var link = linkObj.href;
-		var resultName = linkObj.name;
-		console.info(link);
-		console.info(resultName);
-		if(!new RegExp(searchMovieName).test(linkObj.name)){
-			console.error("结果不匹配，停止下载！");
-			return false;
-		}
-		if(link){
-			parser2.getTorrentDownloadLinks(link).then(function(downloadLinks){
-				if(downloadLinks.length){
-					for(var i=0,len=downloadLinks.length;i<len;i++){
-						(function(i){
-							var downloadLink = downloadLinks[i].href;
-							var name = downloadLinks[i].title.replace(pattern,'');
-							parser2.download(downloadLink,dst,name);
-						})(i);
-						
-					}
-				}else {
-					console.error("没有下载链接！");
-				}
-				
-			});
-		}else {
-			console.error("没有搜索结果！");
-		}
-		
+	search2down(parser2,searchMovieName,pattern).then(function(ret){
+		console.log(ret);
 	}).catch(function(e){
-		console.log(e);
+		console.log("Error: 海盗湾中文网搜索:" + e + " 尝试搜索BT天堂");
+		search2down(parser3,searchMovieName,pattern);
 	});
 }
