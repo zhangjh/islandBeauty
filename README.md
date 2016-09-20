@@ -19,11 +19,13 @@
 欢迎通过上述方式与我联系
 
 ## 用法
-1. 安装依赖
-本项目为Node.js项目，需要[安装Node](https://nodejs.org/en/)运行环境
+1. 安装Node
+
+  本项目为Node.js项目，需要[安装Node](https://nodejs.org/en/)运行环境
 
 2. 下载
-下载本项目源码： [zip](https://github.com/zhangjh/islandBeauty/archive/master.zip)、[src](https://github.com/zhangjh/islandBeauty.git)
+
+  下载本项目源码： [zip](https://github.com/zhangjh/islandBeauty/archive/master.zip)、[src](https://github.com/zhangjh/islandBeauty.git)
 
 3. 安装依赖
   ```
