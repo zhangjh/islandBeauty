@@ -66,7 +66,9 @@ function search2down(entity,searchMovieName,pattern){
       }else {
           reject("搜索结果不匹配！");
       }
-    });
+    }).catch(function(){
+	  reject("没有搜索结果！");
+	});
   });
 }
 
@@ -119,6 +121,10 @@ if(!args.length){
     console.log(ret);
   }).catch(function(e){
     console.log("Error: 海盗湾中文网搜索:" + e + " 尝试搜索BT天堂");
-    search2down(parser3,searchMovieName,pattern);
+    search2down(parser3,searchMovieName,pattern).then(function(ret){
+	  console.log(ret);
+	}).catch(function(e){
+	  console.log("Error: " + e);
+	});
   });
 }
