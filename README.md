@@ -21,7 +21,7 @@
 ## 用法
 1. 安装Node
 
-  本项目为Node.js项目，需要[安装Node](https://nodejs.org/en/)运行环境
+  本项目为Node.js项目，需要[安装Node](https://nodejs.org/en/)运行环境，Windows建议安装[babun](https://github.com/babun/babun)作为终端代替cmd。
 
 2. 下载
 
