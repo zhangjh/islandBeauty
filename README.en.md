@@ -24,7 +24,8 @@ Welcome to cantact me.
 
 ## Usage
 1. INSTALL
-	Visit [Node.js official website](https://nodejs.org/en) to install node enviromeng.
+	Visit [Node.js official website](https://nodejs.org/en) to install node enviroment.
+	It's better to install [babun](https://github.com/babun/babun), a better terminal replacement of cmd on Windows system.
 
 
 2. Download project
