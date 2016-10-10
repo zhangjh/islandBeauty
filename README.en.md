@@ -24,22 +24,26 @@ Welcome to cantact me.
 
 ## Usage
 1. INSTALL
+
 	Visit [Node.js official website](https://nodejs.org/en) to install node enviroment.
 	It's better to install [babun](https://github.com/babun/babun), a better terminal replacement of cmd on Windows system.
 
 
 2. Download project
+
 	Download this project.
 
 	[zip](https://github.com/zhangjh/islandBeauty/archive/master.zip)、[src](https://github.com/zhangjh/islandBeauty.git)
 
 3. Install dependence
+
   ```
   cd islandBeauty
   npm i -d
   ```
 
 4. Get adult video torrent files
+
   ```
   cd bin 
   node main.js
@@ -50,6 +54,7 @@ Welcome to cantact me.
 
 
 5. Get normal movies
+
    We usually search the specific movie and download it, so if we download all of the torrent files founded by the tool will not acceptable.
    To get one movie torrent file, you will pass the movie name to the tool.
    Using this command:
