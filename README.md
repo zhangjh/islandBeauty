@@ -2,6 +2,9 @@
 
 [Readme in English](https://github.com/zhangjh/islandBeauty/blob/master/README.en.md)
 
+岛国丽人的小伙伴们可以去看下我最新的[tumblr spider](https://github.com/zhangjh/node_tumblr_spider)项目，一个针对tumblr的爬虫项目。
+如果说岛国丽人只是一个种子下载器的话，tumblr spider算是一个比较名副其实的爬虫了。
+
 ## 概述
 * 岛国丽人是一个Node.js爬虫项目，顾名思义，可以用来获取**不可描述**电影的种子文件。
 * 当然，我的本意只是用Node做一个爬虫，**Adult torrent**只是一个比较火爆的题材。
