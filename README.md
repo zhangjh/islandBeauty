@@ -15,7 +15,7 @@
 ## 社交
 - [微博](http://login.sina.com.cn/sso/login.php?url=http%3A%2F%2Fweibo.com%2Fjhspider&_rand=1472023636.7234&gateway=1&service=miniblog&entry=miniblog&useticket=1&returntype=META&_client_version=0.6.23)
 
-- [我的博客](http://5941740.cn)
+- [我的博客](http://zhangjh.me)
 
 - [藏经阁](http://favlink.me)
 
