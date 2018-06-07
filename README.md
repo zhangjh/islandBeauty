@@ -17,7 +17,7 @@
 
 - [我的博客](http://zhangjh.me)
 
-- [藏经阁](http://favlink.me)
+- [藏经阁](http://favlink.cn)
 
 欢迎通过上述方式与我联系
 
