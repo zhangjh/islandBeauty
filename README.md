@@ -2,6 +2,8 @@
 
 [Readme in English](https://github.com/zhangjh/islandBeauty/blob/master/README.en.md)
 
+**同学们，别在fork这个项目了，隔壁那个[tumblr spider](https://github.com/zhangjh/node_tumblr_spider)才是大杀器**
+
 岛国丽人的小伙伴们可以去看下我最新的[tumblr spider](https://github.com/zhangjh/node_tumblr_spider)项目，一个针对tumblr的爬虫项目。
 如果说岛国丽人只是一个种子下载器的话，tumblr spider算是一个比较名副其实的爬虫了。
 
